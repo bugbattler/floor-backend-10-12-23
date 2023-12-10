@@ -1,6 +1,6 @@
 const BrandModel = require('../Models/Brand');
 const slugify =require('slugify');
-const { uploadsingleToS3 } = require('../middleware/Uploads');
+const { uploadToS3, uploadsingleToS3 } = require('../middleware/Uploads');
 
 // Create a new Address's 
 
@@ -39,7 +39,7 @@ exports.getBrand = async(req,res)=>{
 
 exports.getSingleBrand = async (req,res)=>{
     try{
-        const Brand = await BrandModel.find({brand:req.params.id});
+        const Brand = await BrandModel.find({_id:req.params.id});
         res.json(Brand);
     }catch(err){
         res.json({err});

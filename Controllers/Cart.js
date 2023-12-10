@@ -1,14 +1,4 @@
 const cartModel = require("../Models/Cart");
-
-// function Cart(data){
-
-// //   for (let i=0; i<data.length; i++){
-//     let i=0;
-//    const filter= data.filter(data=>data.productId == data[i].productId)
-//    return filter;
-// //   }
-// }
-
 exports.createCart = async (req, res) => {
     const {
       ProductName,
@@ -50,37 +40,6 @@ exports.createCart = async (req, res) => {
           });
       }
     });
-//   const find = await cartModel.find({ identifier: req.body.identifier });
-//   const isAddon = req.body.isAddon;
-//   if (find.length == 0) {
-//   } else {
-//     if (isAddon) {
-//       cartModel.findByIdAndUpdate(
-//         { _id: find[0]._id },
-//         {
-//           $push: { room: req.body.room },
-//           $inc: { boxQuantity: req.body.boxQuantity },
-//         },
-//         (err, data) => {
-//           if (err) {
-//             console.log(err);
-//           } else {
-//             res
-//               .status(201)
-//               .json({
-//                 message: "Cart Updated Successfully",
-//                 data,
-//                 toastType: "success",
-//               });
-//           }
-//         }
-//       );
-//     } else {
-//       res
-//         .status(201)
-//         .json({ message: "Product Alredy In cart", toastType: "error" });
-//     }
-//   }
 };
 
 exports.getCart = async (req, res) => {
@@ -104,7 +63,7 @@ exports.getCartByUniqueID = async (req, res) => {
 
 exports.updateCart = (req, res) => {
   cartModel.findOneAndUpdate(
-    { identifier: req.params.identifier },
+    { _id: req.params.id },
     req.body,
     { new: true },
     (err, data) => {
